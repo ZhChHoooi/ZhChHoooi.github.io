@@ -22,6 +22,97 @@
   <link rel="stylesheet" href="static/css/academicons.css" />
   <script src='static/js/latest.js' async></script>
 
+  <!-- ===== Cosmic theme: starfield + frosted-glass cards + INTJ badge ===== -->
+  <style>
+  :root{
+    --glass-bg: rgba(255,255,255,0.85);
+    --glass-bd: rgba(141,121,255,0.30);
+    --glass-sh: 0 10px 40px rgba(8,6,26,0.40);
+  }
+  html, body{ background: transparent !important; }
+
+  #cosmic-bg{
+    position: fixed; inset: 0; width: 100vw; height: 100vh;
+    z-index: -10; display: block; pointer-events: none; background: #070514;
+  }
+
+  /* top nav -> deep-space glass */
+  .masthead{
+    background: rgba(12,10,30,0.55) !important;
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(141,121,255,0.20);
+  }
+  .masthead__inner-wrap, .greedy-nav, .greedy-nav .visible-links{ background: transparent !important; }
+  .greedy-nav a{ color: #ece9ff !important; }
+  .greedy-nav a:hover{ color: #bcb0ff !important; }
+  .greedy-nav .visible-links a:before{ background: #8f7bff !important; }
+  .greedy-nav button .navicon,
+  .greedy-nav button .navicon:before,
+  .greedy-nav button .navicon:after{ background: #ece9ff !important; }
+
+  /* sidebar profile -> frosted glass card */
+  .sidebar{
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-bd);
+    border-radius: 20px;
+    box-shadow: var(--glass-sh);
+    padding: 22px 18px !important;
+  }
+
+  /* main content -> frosted glass card */
+  .page{
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-bd);
+    border-radius: 20px;
+    box-shadow: var(--glass-sh);
+  }
+
+  /* publication cards lift on the glass */
+  .paper-box{
+    background: rgba(255,255,255,0.55) !important;
+    border: 1px solid rgba(141,121,255,0.18);
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(8,6,26,0.12);
+  }
+
+  /* INTJ badge near the avatar */
+  .intj-wrap{ display: flex; flex-direction: column; align-items: center; gap: 7px; margin: 12px 0 6px; }
+  .intj-img{ width: 66px; height: auto; filter: drop-shadow(0 5px 12px rgba(123,92,255,0.45)); }
+  .intj-badge{
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 14px;
+    font-size: 13px; font-weight: 600; letter-spacing: .3px;
+    color: #fff !important; border-radius: 999px;
+    background: linear-gradient(135deg,#7b5cff 0%,#9a4dff 50%,#5b8cff 100%);
+    box-shadow: 0 4px 14px rgba(123,92,255,0.45);
+    text-decoration: none !important;
+  }
+  .intj-badge small{ font-weight: 500; opacity: .9; }
+
+  /* school logos */
+  .logo-row{
+    display: flex; justify-content: center; align-items: center;
+    gap: 64px; flex-wrap: wrap;
+  }
+  .logo-row img{ filter: drop-shadow(0 4px 12px rgba(0,0,0,0.30)); }
+
+  /* avatar cosmic glow */
+  img.author__avatar{
+    border: 3px solid rgba(255,255,255,0.75) !important;
+    box-shadow: 0 0 0 4px rgba(123,92,255,0.28), 0 6px 26px rgba(91,140,255,0.45) !important;
+  }
+  /* publication cards hover */
+  .paper-box{ transition: transform .25s ease, box-shadow .25s ease; }
+  .paper-box:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(91,140,255,0.30) !important; }
+  /* section heading accent */
+  .page__content h1{
+    border-bottom: 1px solid rgba(141,121,255,0.28);
+    padding-bottom: .18em;
+  }
+  </style>
+
   <!-- end custom head snippets -->
 </head>
 
@@ -63,6 +154,10 @@
         </div>
         <div class="author__content">
           <h3 class="author__name">Chonghao (Matthew) Zhang (张翀昊)</h3>
+          <div class="intj-wrap">
+            <img class="intj-img" src="static/picture/intj.jpg" alt="INTJ-A Architect" />
+            <a class="intj-badge" href="https://www.16personalities.com/intj-personality" target="_blank" rel="noopener">INTJ-A <small>· Architect</small></a>
+          </div>
           <p class="author__bio"></p>
         </div>
         <div class="author__urls-wrapper">
@@ -283,10 +378,9 @@
             src="//cdn.clustrmaps.com/map_v2.js?cl=1838a3&amp;w=400&amp;t=tt&amp;d=CovrMNiL9TWp_DepHIeiD03aAMA-z-wblg9Uyu2t0PU&amp;co=ffffff&amp;cmo=af1616&amp;cmn=1fba1f&amp;ct=000000"></script>
             
 
-          <div class="logo-row" style="margin-top: 40px; text-align: center;">
-            <img src="./static/picture/tongji.png" style="height: 80px;margin-right: 30px;" alt="" />
-            <img src="./static/picture/fd.png" style="height: 80px;" alt="" />
-            <img src="./static/picture/gl.jpg"  style="height: 80px;" alt="" />
+          <div class="logo-row" style="margin-top: 40px;">
+            <img src="./static/picture/tongji.png" style="height: 80px;" alt="Tongji University" />
+            <img src="./static/picture/fd.png" style="height: 80px;" alt="Fudan University" />
           </div>
 
 
@@ -331,6 +425,88 @@
   </div>
   </article>
   </div>
+  <!-- ===== Cosmic starfield background ===== -->
+  <script>
+  (function(){
+    var c=document.createElement('canvas');
+    c.id='cosmic-bg';
+    document.body.insertBefore(c, document.body.firstChild);
+    var x=c.getContext('2d');
+    var W,H,D,stars,nebs,sh=null,lastSh=0;
+    function rnd(a,b){return a+Math.random()*(b-a);}
+    function init(){
+      D=Math.min(window.devicePixelRatio||1,2);
+      W=c.width=Math.floor(innerWidth*D);
+      H=c.height=Math.floor(innerHeight*D);
+      c.style.width=innerWidth+'px';
+      c.style.height=innerHeight+'px';
+      var n=Math.round(innerWidth*innerHeight/1700);
+      n=Math.max(150,Math.min(440,n));
+      stars=[];
+      for(var i=0;i<n;i++){
+        var big=Math.random()>0.86;
+        stars.push({
+          x:Math.random()*W,y:Math.random()*H,
+          r:(big?rnd(1.1,1.9):rnd(0.4,1.05))*D,
+          b:rnd(0.25,0.9),tw:rnd(0.6,2.2),ph:rnd(0,6.28),
+          dr:rnd(0.01,0.05)*D,
+          h:(Math.random()<0.16?(Math.random()<0.5?rnd(205,255):rnd(38,52)):0)
+        });
+      }
+      nebs=[
+        {x:W*0.20,y:H*0.16,r:Math.max(W,H)*0.40,c:'rgba(96,72,205,0.18)'},
+        {x:W*0.84,y:H*0.30,r:Math.max(W,H)*0.34,c:'rgba(58,116,214,0.14)'},
+        {x:W*0.58,y:H*0.88,r:Math.max(W,H)*0.42,c:'rgba(150,60,190,0.12)'}
+      ];
+    }
+    function draw(t){
+      var g=x.createRadialGradient(W*0.18,H*0.10,0,W*0.18,H*0.10,Math.max(W,H)*1.1);
+      g.addColorStop(0,'#241a52');g.addColorStop(0.42,'#120d33');g.addColorStop(1,'#060414');
+      x.fillStyle=g;x.fillRect(0,0,W,H);
+      for(var k=0;k<nebs.length;k++){
+        var nb=nebs[k];
+        var rg=x.createRadialGradient(nb.x,nb.y,0,nb.x,nb.y,nb.r);
+        rg.addColorStop(0,nb.c);rg.addColorStop(1,'rgba(0,0,0,0)');
+        x.fillStyle=rg;x.fillRect(0,0,W,H);
+      }
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        s.y+=s.dr;if(s.y>H+2){s.y=-2;s.x=Math.random()*W;}
+        var a=s.b*(0.55+0.45*Math.sin(t*0.001*s.tw+s.ph));
+        if(a<0)a=0;
+        if(s.r>1.25*D){
+          x.beginPath();x.fillStyle='rgba(170,195,255,'+(a*0.16)+')';
+          x.arc(s.x,s.y,s.r*3.2,0,6.283);x.fill();
+        }
+        x.beginPath();
+        x.fillStyle=s.h?('hsla('+s.h+',85%,82%,'+a+')'):('rgba(255,255,255,'+a+')');
+        x.arc(s.x,s.y,s.r,0,6.283);x.fill();
+      }
+      if(!sh && t-lastSh>rnd(3800,7200)){lastSh=t;
+        var L=Math.random()<0.5;
+        sh={x:L?rnd(0,W*0.35):rnd(W*0.65,W),y:rnd(0,H*0.45),
+            vx:(L?1:-1)*rnd(7,11)*D,vy:rnd(3.5,6)*D,l:0,m:rnd(55,85)};
+      }
+      if(sh){
+        sh.x+=sh.vx;sh.y+=sh.vy;sh.l++;
+        var al=Math.sin(Math.PI*sh.l/sh.m);
+        if(al>0){
+          var tx=sh.x-sh.vx*7,ty=sh.y-sh.vy*7;
+          var lg=x.createLinearGradient(sh.x,sh.y,tx,ty);
+          lg.addColorStop(0,'rgba(255,255,255,'+al+')');
+          lg.addColorStop(1,'rgba(255,255,255,0)');
+          x.strokeStyle=lg;x.lineWidth=2*D;x.lineCap='round';
+          x.beginPath();x.moveTo(sh.x,sh.y);x.lineTo(tx,ty);x.stroke();
+        }
+        if(sh.l>=sh.m||sh.x<-50||sh.x>W+50||sh.y>H+50)sh=null;
+      }
+      requestAnimationFrame(draw);
+    }
+    var rt;
+    window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(init,200);});
+    init();requestAnimationFrame(draw);
+  })();
+  </script>
   <script src="static/js/main.min.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="static/js/26b8800e9ddb4166a79dcb00249c3518.js"></script>
