@@ -25,32 +25,58 @@
   <!-- ===== Cosmic theme: starfield + frosted-glass cards + INTJ badge ===== -->
   <style>
   :root{
-    --glass-bg: rgba(255,255,255,0.85);
-    --glass-bd: rgba(141,121,255,0.30);
-    --glass-sh: 0 10px 40px rgba(8,6,26,0.40);
+    --glass-bg: rgba(22,20,46,0.62);
+    --glass-bd: rgba(150,130,255,0.24);
+    --glass-sh: 0 10px 40px rgba(0,0,0,0.48);
+    --ink: #dcdcf2;
+    --ink-strong: #ffffff;
+    --ink-soft: #adb0d8;
+    --link: #9fb6ff;
+    --link-hover: #c8d4ff;
+    --accent: #b9a6ff;
   }
   html, body{ background: transparent !important; }
+
+  /* unify English text in Times New Roman (icon fonts are not touched) */
+  body, h1, h2, h3, h4, h5, h6, p, li, a, span, strong, em, small, blockquote,
+  .author__name, .page__content, .sidebar, .masthead, .badge, code{
+    font-family: 'Times New Roman', Times, 'Songti SC', 'SimSun', serif !important;
+  }
 
   #cosmic-bg{
     position: fixed; inset: 0; width: 100vw; height: 100vh;
     z-index: -10; display: block; pointer-events: none; background: #070514;
   }
 
+  /* ---- dark palette: light text on deep glass ---- */
+  body, .page__content, .page__content p, .page__content li, .page__content ul,
+  .sidebar, .author__content, .author__urls li, .author__bio{ color: var(--ink) !important; }
+  .page__content h1, .page__content h2, .page__content h3, .author__name{ color: var(--ink-strong) !important; }
+  .page__content strong, .page strong, .sidebar strong{ color: var(--ink-strong) !important; }
+  .page__content em, .author__urls em{ color: var(--ink-soft) !important; }
+  .page__content a, .author__urls a, .author__content a{ color: var(--link) !important; }
+  .page__content a:hover, .author__urls a:hover{ color: var(--link-hover) !important; }
+  .sidebar i, .author__urls i, .author__content i{ color: var(--accent) !important; }
+  .page__content code{
+    background: rgba(141,121,255,0.18) !important; color: #d9d2ff !important;
+    border: 1px solid rgba(141,121,255,0.28);
+  }
+
   /* top nav -> deep-space glass */
   .masthead{
-    background: rgba(12,10,30,0.55) !important;
+    background: rgba(10,9,26,0.62) !important;
     -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(141,121,255,0.20);
   }
   .masthead__inner-wrap, .greedy-nav, .greedy-nav .visible-links{ background: transparent !important; }
-  .greedy-nav a{ color: #ece9ff !important; }
-  .greedy-nav a:hover{ color: #bcb0ff !important; }
+  .greedy-nav a, .masthead a{ color: #ece9ff !important; }
+  .greedy-nav a:hover{ color: var(--accent) !important; }
   .greedy-nav .visible-links a:before{ background: #8f7bff !important; }
   .greedy-nav button .navicon,
   .greedy-nav button .navicon:before,
   .greedy-nav button .navicon:after{ background: #ece9ff !important; }
 
-  /* sidebar profile -> frosted glass card */
+  /* sidebar -> dark frosted glass */
   .sidebar{
     background: var(--glass-bg) !important;
     -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
@@ -60,7 +86,7 @@
     padding: 22px 18px !important;
   }
 
-  /* main content -> frosted glass card */
+  /* main content -> dark frosted glass */
   .page{
     background: var(--glass-bg) !important;
     -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
@@ -69,17 +95,19 @@
     box-shadow: var(--glass-sh);
   }
 
-  /* publication cards lift on the glass */
+  /* publication cards */
   .paper-box{
-    background: rgba(255,255,255,0.55) !important;
-    border: 1px solid rgba(141,121,255,0.18);
+    background: rgba(34,30,64,0.55) !important;
+    border: 1px solid rgba(141,121,255,0.22);
     border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(8,6,26,0.12);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.30);
+    transition: transform .25s ease, box-shadow .25s ease;
   }
+  .paper-box:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(123,92,255,0.40) !important; }
 
-  /* INTJ badge near the avatar */
+  /* INTJ near the avatar */
   .intj-wrap{ display: flex; flex-direction: column; align-items: center; gap: 7px; margin: 12px 0 6px; }
-  .intj-img{ width: 66px; height: auto; filter: drop-shadow(0 5px 12px rgba(123,92,255,0.45)); }
+  .intj-img{ width: 96px !important; height: auto !important; filter: drop-shadow(0 6px 16px rgba(123,92,255,0.55)); }
   .intj-badge{
     display: inline-flex; align-items: center; gap: 7px;
     padding: 6px 14px;
@@ -91,24 +119,32 @@
   }
   .intj-badge small{ font-weight: 500; opacity: .9; }
 
+  /* best-paper award tag */
+  .award-tag{
+    display: inline-block; margin-left: 6px; padding: 1px 9px;
+    font-size: 12px; font-weight: 700; border-radius: 999px;
+    color: #3a2a00; background: linear-gradient(135deg,#ffd86b,#ffb347);
+    box-shadow: 0 2px 8px rgba(255,180,71,0.40); vertical-align: middle; white-space: nowrap;
+  }
+
   /* school logos */
   .logo-row{
     display: flex; justify-content: center; align-items: center;
     gap: 64px; flex-wrap: wrap;
   }
-  .logo-row img{ filter: drop-shadow(0 4px 12px rgba(0,0,0,0.30)); }
+  .logo-row img{
+    background: #ffffff; padding: 10px 16px; border-radius: 14px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+  }
 
   /* avatar cosmic glow */
   img.author__avatar{
-    border: 3px solid rgba(255,255,255,0.75) !important;
-    box-shadow: 0 0 0 4px rgba(123,92,255,0.28), 0 6px 26px rgba(91,140,255,0.45) !important;
+    border: 3px solid rgba(255,255,255,0.55) !important;
+    box-shadow: 0 0 0 4px rgba(123,92,255,0.30), 0 6px 26px rgba(91,140,255,0.50) !important;
   }
-  /* publication cards hover */
-  .paper-box{ transition: transform .25s ease, box-shadow .25s ease; }
-  .paper-box:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(91,140,255,0.30) !important; }
   /* section heading accent */
   .page__content h1{
-    border-bottom: 1px solid rgba(141,121,255,0.28);
+    border-bottom: 1px solid rgba(141,121,255,0.30);
     padding-bottom: .18em;
   }
   </style>
@@ -155,7 +191,7 @@
         <div class="author__content">
           <h3 class="author__name">Chonghao (Matthew) Zhang (张翀昊)</h3>
           <div class="intj-wrap">
-            <img class="intj-img" src="static/picture/intj.jpg" alt="INTJ-A Architect" />
+            <img class="intj-img" src="static/picture/intj.png" alt="INTJ-A Architect" />
             <a class="intj-badge" href="https://www.16personalities.com/intj-personality" target="_blank" rel="noopener">INTJ-A <small>· Architect</small></a>
           </div>
           <p class="author__bio"></p>
@@ -323,7 +359,7 @@
                 RAG: Personalized Urban Mobility Recommendations via Streetscape Perception and Multi-Source
                 Semantics</a>, <strong>Chonghao Zhang</strong>, Hao Yu, Xiao Luo, Wenyu Yin, Jinyi Huang, Xuanyu Liu,
               Zhe Liu</li>
-            <li><code class="language-plaintext highlighter-rouge">IEEE ITSC 2025</code> <a
+            <li><code class="language-plaintext highlighter-rouge">IEEE ITSC 2025</code> <span class="award-tag">🏆 Best Paper Nominee</span> <a
                 href="https://www.researchgate.net/publication/394517042_Taxi_Repositioning_via_LLM-Driven_Multi-Agent_Coordination_and_Experience_Accumulation">Taxi
                 Repositioning via LLM-Driven Multi-Agent Coordination and Experience Accumulation</a>, Hao Yu,
               <strong>Chonghao Zhang</strong>, Xiao Luo, Wenyu Yin, Zhe Liu, Jinyi Huang, Xuanyu Liu
